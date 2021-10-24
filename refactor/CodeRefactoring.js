@@ -1,3 +1,4 @@
+/* eslint-disable keyword-spacing */
 /* eslint-disable no-undef */
 // url config
 module.exports = {
@@ -11,12 +12,14 @@ const NO_SHOP = 'No shop found'
 const USER_INVITED_ALREADY = 'User already invited to this shop'
 
 // helper class
-const sendPostRequest = (authUrl, invitationBody, callback) => {
-  return superagent // can use common headers, cache, prefix, retry
-    .post(authUrl)
-    .send(invitationBody)
-    .end(callback(err, response))
-}
+const sendPostRequest = (async (authUrl, invitationBody, callback) => { // can use common headers, cache, prefix, retry
+  try {
+    const response = await superagent.post(authUrl).send(invitationBody)
+    console.log(response.body.explanation)
+  } catch (error) {
+    logError(error)
+  }
+})()
 
 const logError = (error) => {
   if (error) {

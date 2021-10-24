@@ -1,5 +1,3 @@
-/* eslint-disable handle-callback-err */
-/* eslint-disable no-undef */
 exports.inviteUser = function (req, res) {
   var invitationBody = req.body
   var shopId = req.params.shopId
@@ -8,6 +6,8 @@ exports.inviteUser = function (req, res) {
   //  --can abstract superagent  http requests to a file. If any common headers, cache, prefix, retry  to be added for
   // each request, it can be added in a single place. If its an error, it logs in one centralized place.
   // If success response, Use a callback function to handle the response as per the flow
+  // Can add exception handling
+  // can use async and await instead of many callbacks
   superagent
     .post(authUrl)
     .send(invitationBody)
